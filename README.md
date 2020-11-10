@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# 模拟微信信息流组件
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## WorkFlow
+项目通过 create-react-app 快速搭建
+```
+// 启动开发
+yarn start
+// 编译
+yarn build
+```
 
-## Available Scripts
+## 思路
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. 不同的消息组件通过策略模式，便于将来拓展
+2. 数据量大的时候通常应该需要考虑性能问题，比如通过 `react-virtualized` 来实现，但是由于：
+  1. 逆序，初始化时需要定位在列表底部
+  2. 列表项高度不确定
+  3. 无限加载
+  4. 过快滚动来不及渲染的情况下出现空白并不是很好的体验
+  综合以上多个因素，本着不过早优化的原则，暂时不考虑虚拟列表，仅通过 `react-infinite-scroller` 来实现无限滚动。
+3. 除了使用虚拟列表来优化性能，还要考虑图片的优化：
+  1. 图片懒加载
+  2. 列表中的图片仅展示预览图，点击后查看的才是实际大图
+  3. 列表中的图片质量压缩
+  这两点比较容易实现，第二，三点通常通过添加 cdn 裁剪参数来实现。
+4. 对于消息组件本身的实现上可以视情况通过 React.memo 防止无意义的 rerender
+5. 关于状态管理：这里仅是一个简单的组件，可以暂时不加如 mobx， redux 等状态管理，以免增加系统的复杂度。
+6. 发送消息：输入框支持纯文本（暂不支持富文本，后续可以通过 quilljs 实现），支持选择图片。
+7. 由于存在用户输入，需要注意 xss 攻击。
+8. 这里实现的是 pc 端，如果移动端版本的话还需要考虑到屏幕适配，键盘, 1px等可能存在的问题。
