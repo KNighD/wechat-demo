@@ -1,9 +1,20 @@
 .app {
   width: 375px;
   height: 667px;
+  display: flex;
+  flex-direction: column;
   border: 1px solid #f0f0f0;
+  box-sizing: border-box;
 }
 .app-header {
   padding: 16px;
   border-bottom: 1px solid #f0f0f0;
+}
+.message-list-container {
+  flex: 1;
+  overflow: auto;
+}
+.input-box-container {
+  height: 200px;
+   border-top: 1px solid #f0f0f0;
 }
