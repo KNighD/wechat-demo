@@ -13,16 +13,24 @@
 .message-list-container {
   flex: 1;
   overflow: auto;
+  padding: 16px;
+}
+.loader {
+  text-align: center;
+  font-size: 12px;
 }
 .input-box-container {
   height: 200px;
   border-top: 1px solid #f0f0f0;
 }
+.avatar-wrap {
+  margin: 0 8px;
+}
+
 .avatar {
   width: 36px;
   height: 36px;
-  border-radius: 20px;
-  margin: 0 8px;
+  border-radius: 18px;
 }
 
 .my-message-container {

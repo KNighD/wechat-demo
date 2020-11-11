@@ -1508,6 +1508,12 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-lazyload@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/@types/react-lazyload/download/@types/react-lazyload-3.0.0.tgz#7b43b45b5db7ead73ca9ccaf93d1c24397706d01"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.9.53":
   version "16.9.56"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-16.9.56.tgz?cache=0&sync_timestamp=1604651667761&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-16.9.56.tgz#ea25847b53c5bec064933095fc366b1462e2adf0"
@@ -7808,6 +7814,10 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-content-loader@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.npm.taobao.org/react-content-loader/download/react-content-loader-5.1.4.tgz#854bafe4415dd9de07174621375bc308edd0ebb5"
+
 react-dev-utils@^11.0.0:
   version "11.0.0"
   resolved "https://registry.npm.taobao.org/react-dev-utils/download/react-dev-utils-11.0.0.tgz?cache=0&sync_timestamp=1603462529653&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-dev-utils%2Fdownload%2Freact-dev-utils-11.0.0.tgz#9fdb1b173f4ffc1f23fcf98465d93b16a860b73e"
@@ -7862,6 +7872,10 @@ react-is@^16.8.1:
 react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-17.0.1.tgz?cache=0&sync_timestamp=1603369407179&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-is%2Fdownload%2Freact-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
+
+react-lazyload@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npm.taobao.org/react-lazyload/download/react-lazyload-3.1.0.tgz#2d2b172ede29f0a72dc4b329af6f1626ffd637d2"
 
 react-refresh@^0.8.3:
   version "0.8.3"

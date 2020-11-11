@@ -29,7 +29,7 @@ export interface IImageMessage extends IMessageDataFromUser {
   // 宽
   height: number
   // 高
-  wight: number
+  width: number
 }
 
 // 来自系统的信息

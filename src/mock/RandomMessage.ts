@@ -10,7 +10,7 @@ class RandomMessage {
   userName?: string
   avatar?: string
   height?: number
-  wight?: number
+  width?: number
 
   userMessageProducer = () => {
     this.type = Random.pick([
@@ -27,7 +27,7 @@ class RandomMessage {
           Random.pick(['300x250', '250x250', '240x400'])
         )
         const [width, height] = this.content.split(/\/+/)[2].split('x')
-        this.wight = Number(width)
+        this.width = Number(width)
         this.height = Number(height)
       },
       [MessageTypes.UNKNOWN]: () => {

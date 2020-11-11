@@ -1,6 +1,7 @@
 import React from 'react'
 import { IImageMessage, ITextMessage, IUnknownMessage } from '../data'
 import UserMessageContent from './UserMessageContent'
+import Avatar from './Avatar'
 
 interface Props {
   data: ITextMessage & IImageMessage & IUnknownMessage
@@ -10,7 +11,7 @@ interface Props {
 const MyMessage = ({ data }: Props) => {
   return (
     <div className="my-message-container">
-      <img className="avatar" src={data.avatar} alt="avatar" />
+      <Avatar avatar={data.avatar} />
       <div className="content-wrap">
         <UserMessageContent data={data} />
       </div>
