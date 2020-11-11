@@ -1,9 +1,9 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
-import { IMessageData } from '../data'
+import { ICommonMessageData } from '../data'
 
 interface Props {
-  messageList: IMessageData[]
+  messageList: ICommonMessageData[]
   total: number
   loadMore: () => void
   loading: boolean
@@ -22,14 +22,16 @@ const MessageList = ({ messageList, loadMore, total, loading }: Props) => {
             <div className="loader" key={0}>
               Loading...
             </div>
-          ) : <div />
+          ) : (
+            <div key={0} />
+          )
         }
         threshold={20}
         isReverse
       >
-        {messageList.map((v, i) => (
-          <div style={{ margin: 12 }} key={v}>
-            {v}
+        {messageList.map((message) => (
+          <div style={{ margin: 12 }} key={message.id}>
+            {message.content}
           </div>
         ))}
       </InfiniteScroll>
