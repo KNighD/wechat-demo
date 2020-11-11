@@ -21,8 +21,25 @@ export interface IMessageDataFromUser extends IMessageData {
   userName: string
 }
 
-// 来自系统的信息
-export interface IMessageDataFromSystem extends IMessageData {
+export interface IUnknownMessage extends IMessageDataFromUser {}
+
+export interface ITextMessage extends IMessageDataFromUser {}
+
+export interface IImageMessage extends IMessageDataFromUser {
+  // 宽
+  height: number
+  // 高
+  wight: number
 }
 
-export type ICommonMessageData = IMessageDataFromUser | IMessageDataFromSystem
+// 来自系统的信息
+export interface IMessageDataFromSystem extends IMessageData {}
+
+export type IUnioMessageData =
+  | IMessageDataFromUser
+  | IMessageDataFromSystem
+  | IImageMessage
+
+export type IIntersectionMessageData = ITextMessage &
+  IMessageDataFromSystem &
+  IImageMessage

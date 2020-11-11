@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import MessageList from './components/MessageList'
 import InputBox from './components/InputBox'
-import { ICommonMessageData } from './data'
+import { IUnioMessageData } from './data'
 import { getMessages } from './service'
 import './App.css'
 
 function App() {
-  const [messageList, setMessageList] = useState<ICommonMessageData[]>([])
+  const [messageList, setMessageList] = useState<IUnioMessageData[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(false)
   const loadMore = async () => {

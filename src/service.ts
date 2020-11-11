@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { ICommonMessageData } from './data'
+import { IUnioMessageData } from './data'
 import './mock'
 
 export const getMessages = async () => {
-  const result = await axios.get<{ list: ICommonMessageData[]; total: number }>(
+  const result = await axios.get<{ list: IUnioMessageData[]; total: number }>(
     '/messages'
   )
   return result.data

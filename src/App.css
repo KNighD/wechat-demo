@@ -16,5 +16,50 @@
 }
 .input-box-container {
   height: 200px;
-   border-top: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 20px;
+  margin: 0 8px;
+}
+
+.my-message-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-left: 60px;
+  margin: 16px 0;
+}
+
+.my-message-container .content-wrap {
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.other-message-container {
+  display: flex;
+  padding-right: 60px;
+  margin: 16px 0;
+}
+
+.other-message-container .content-wrap {
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.system-message-container {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.time-content {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.withraw-content {
+  font-size: 12px;
+  color: #8c8c8c;
 }

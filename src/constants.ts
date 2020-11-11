@@ -1,10 +1,10 @@
 // 消息类型
 export enum MessageTypes {
-  UNKNOWN = 0, 
+  UNKNOWN = 0,
   TEXT = 1,
   IMAGE = 2,
-  INVITATION = 3,
-  TIME = 4
+  WITHDRAW = 3,
+  TIME = 4,
 }
 
 // 消息来源

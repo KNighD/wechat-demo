@@ -9,6 +9,8 @@ class RandomMessage {
   from: MessageFrom
   userName?: string
   avatar?: string
+  height?: number
+  wight?: number
 
   userMessageProducer = () => {
     this.type = Random.pick([
@@ -16,14 +18,23 @@ class RandomMessage {
       MessageTypes.IMAGE,
       MessageTypes.UNKNOWN,
     ])
-    const contentProducer: { [key: string]: string } = {
-      [MessageTypes.TEXT]: Random.cparagraph(1, 3),
-      [MessageTypes.IMAGE]: Random.image(
-        Random.pick(['300x250', '250x250', '240x400'])
-      ),
-      [MessageTypes.UNKNOWN]: '未知消息类型',
+    const contentProducer: { [key: string]: () => void } = {
+      [MessageTypes.TEXT]: () => {
+        this.content = Random.cparagraph(1, 3)
+      },
+      [MessageTypes.IMAGE]: () => {
+        this.content = Random.image(
+          Random.pick(['300x250', '250x250', '240x400'])
+        )
+        const [width, height] = this.content.split(/\/+/)[2].split('x')
+        this.wight = Number(width)
+        this.height = Number(height)
+      },
+      [MessageTypes.UNKNOWN]: () => {
+        this.content = '【未知消息类型】'
+      },
     }
-    this.content = contentProducer[this.type] || ''
+    contentProducer[this.type]()
   }
 
   producer = {
@@ -33,15 +44,15 @@ class RandomMessage {
       this.userMessageProducer()
     },
     [MessageFrom.OTHER]: () => {
-      this.userName = Random.cname()
-      this.avatar = Random.image('40x40', Random.color(), this.userName[0])
+      this.userName = Random.pick(['甲', '乙', '丙'])
+      this.avatar = Random.image('40x40', undefined, this.userName)
       this.userMessageProducer()
     },
     [MessageFrom.SYSTEM]: () => {
-      this.type = Random.pick([MessageTypes.TIME, MessageTypes.INVITATION])
+      this.type = Random.pick([MessageTypes.TIME, MessageTypes.WITHDRAW])
       const contentProducer: { [key: string]: string } = {
         [MessageTypes.TIME]: Random.datetime(),
-        [MessageTypes.INVITATION]: `${Random.cname()} 邀请 ${Random.cname()} 进群`,
+        [MessageTypes.WITHDRAW]: `${Random.pick(['甲', '乙', '丙'])}撤回一条消息`,
       }
       this.content = contentProducer[this.type]
     },

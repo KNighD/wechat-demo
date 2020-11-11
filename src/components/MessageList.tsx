@@ -1,12 +1,22 @@
 import React from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
-import { ICommonMessageData } from '../data'
+import { IUnioMessageData, IIntersectionMessageData } from '../data'
+import { MessageFrom } from '../constants'
+import MyMessage from './MyMessage'
+import OtherMessage from './OtherMessage'
+import SystemMessage from './SystemMessage'
 
 interface Props {
-  messageList: ICommonMessageData[]
+  messageList: IUnioMessageData[]
   total: number
   loadMore: () => void
   loading: boolean
+}
+
+const MessageComponentsMap = {
+  [MessageFrom.ME]: MyMessage,
+  [MessageFrom.OTHER]: OtherMessage,
+  [MessageFrom.SYSTEM]: SystemMessage,
 }
 
 const MessageList = ({ messageList, loadMore, total, loading }: Props) => {
@@ -29,11 +39,15 @@ const MessageList = ({ messageList, loadMore, total, loading }: Props) => {
         threshold={20}
         isReverse
       >
-        {messageList.map((message) => (
-          <div style={{ margin: 12 }} key={message.id}>
-            {message.content}
-          </div>
-        ))}
+        {messageList.map((message) => {
+          const MessageComponent = MessageComponentsMap[message.from]
+          return (
+            <MessageComponent
+              key={message.id}
+              data={message as IIntersectionMessageData}
+            />
+          )
+        })}
       </InfiniteScroll>
     </div>
   )
