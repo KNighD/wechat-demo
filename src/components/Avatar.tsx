@@ -17,7 +17,7 @@ const AvatarPlaceHolder = () => {
 
 const Avartar = ({ avatar }: Props) => {
   return (
-    <LazyLoad height={36} scrollContainer=".message-list-container">
+    <LazyLoad once height={36} scrollContainer=".message-list-container">
       <div className="avatar-wrap">
         <ImageWithPlaceHolder
           imgClassName="avatar"

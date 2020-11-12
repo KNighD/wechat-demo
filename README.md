@@ -7,14 +7,18 @@
 yarn start
 // 编译
 yarn build
+// 发布
+deploy
 ```
+
+demo 预览地址：https://knighd.github.io/wechat-demo/
 
 ## 思路
 
 1. 一共有以下三个角色，每个角色又有不同的消息类型（后续可以继续拓展）
 
   1. 用户自己的消息：图片 / 文字类型 / ...
-
+  
   2. 来自别人的消息：图片 / 文字类型 / ...
 
   3. 来自系统的消息：时间 / 撤销消息 / ...
@@ -38,16 +42,16 @@ yarn build
   1. 由于存在用户输入，需要注意防范 xss 攻击
   
   2. 如果需要支持富文本可以通过 quilljs
-  
-2. 关于状态管理：这里仅是一个简单的组件，可以暂时不加如 mobx， redux 等状态管理，以免增加系统的复杂度。
 
-3. 当出现性能瓶颈时可以考虑通过 React.memo / useCallback / useMemo 等优化消息组件
+2. 状态管理：这里仅是一个简单的组件，可以暂时不加如 mobx， redux 等状态管理，以免增加系统的复杂度。
 
-4. 这里实现的是 pc 端，如果移动端版本的话还需要考虑到屏幕适配，键盘, 1px等可能存在的问题。
+3. 组件性能优化：性能瓶颈时可以考虑通过 React.memo / useCallback / useMemo 等优化消息组件
+
+4. 移动端：这里实现的是 pc 端，如果移动端版本的话还需要考虑到屏幕适配，键盘, 1px等可能存在的问题。
 
 5. 由于样式不做强要求，没有用 css modules，实际上大一点的项目最好还是采用 css modules / css in js。
 
-6. 数据量大的时候通常应该需要考虑性能问题，比如通过 `react-virtualized` 来实现，但是由于：
+6. 列表优化：数据量大的时候通常应该需要考虑性能问题，比如通过 `react-virtualized` 来实现，但是由于
 
    1. 逆序，初始化时需要定位在列表底部
 
@@ -64,7 +68,7 @@ yarn build
 实际上在 `MessageList` 文件中
 
 ```
-<MessageComponent
+<BaseMessage
   key={message.id}
   data={message as IIntersectionMessageData}
 />

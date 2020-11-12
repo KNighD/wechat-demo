@@ -27,7 +27,7 @@ const ImageMessage = ({ data }: Props) => {
   }
 
   return (
-    <LazyLoad height={height} scrollContainer=".message-list-container">
+    <LazyLoad once height={height} scrollContainer=".message-list-container">
       <ImageWithPlaceHolder
         imgStyle={{ height, width }}
         src={data.content}
