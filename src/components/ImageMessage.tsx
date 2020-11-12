@@ -19,7 +19,7 @@ const ImageMessage = ({ data }: Props) => {
         speed={2}
         width={width}
         height={height}
-        viewBox="0 0 36 36"
+        viewBox={`0 0 ${width} ${height}`}
       >
         <rect x="0" y="0" width={width} height={height} />
       </ContentLoader>
