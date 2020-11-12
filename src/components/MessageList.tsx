@@ -1,5 +1,5 @@
 import React from 'react'
-import InfiniteScroll from 'react-infinite-scroller'
+import { Waypoint } from 'react-waypoint'
 import { IUnioMessageData, IIntersectionMessageData } from '../data'
 import BaseMessage from './BaseMessage'
 
@@ -10,30 +10,27 @@ interface Props {
 }
 
 const MessageList = ({ messageList, loadMore, total }: Props) => {
+  const hasMore = messageList.length < total || messageList.length === 0
+  const onReachTop = () => {
+    if (hasMore) {
+      loadMore()
+    }
+  }
+
   return (
     <div className="message-list-container">
-      <InfiniteScroll
-        pageStart={0}
-        hasMore={messageList.length < total || messageList.length === 0}
-        useWindow={false}
-        loadMore={loadMore}
-        loader={
-          <div className="loader" key={0}>
-            Loading...
+      {messageList.map((message) => {
+        return (
+          <div key={message.id}>
+            <BaseMessage data={message as IIntersectionMessageData} />
           </div>
-        }
-        threshold={20}
-        isReverse
-      >
-        {messageList.map((message) => {
-          return (
-            <BaseMessage
-              key={message.id}
-              data={message as IIntersectionMessageData}
-            />
-          )
-        })}
-      </InfiniteScroll>
+        )
+      })}
+      <Waypoint onEnter={onReachTop}>
+        <div className="loader" key={0}>
+          {hasMore ? 'Loading...' : '没有更多了'}
+        </div>
+      </Waypoint>
     </div>
   )
 }

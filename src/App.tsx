@@ -15,7 +15,7 @@ function App() {
     }
     setLoading(true)
     const messagesRes = await getMessages()
-    setMessageList([...messagesRes.list, ...messageList])
+    setMessageList([...messageList, ...messagesRes.list])
     setTotal(messagesRes.total)
     setLoading(false)
   }, [loading, messageList])

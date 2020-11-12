@@ -1,4 +1,4 @@
-# 模拟微信信息流组件
+# 模拟微信信息流组件 FOR PC
 
 ## WorkFlow
 项目通过 create-react-app 快速搭建
@@ -23,7 +23,7 @@ demo 预览地址：https://knighd.github.io/wechat-demo/
 
    3. 来自系统的消息：时间 / 撤销消息 / ...
 
-      因此项目中使用了工厂 / 策略模式用于生成数据 / 渲染组件，方便将来拓展，这里用 axios + mockjs 来模拟接口请求，对于接口异常的情况暂时不做处理
+      因此项目中使用了工厂 / 策略模式用于生成数据 / 渲染组件，方便将来拓展，这里用 axios + mockjs 来模拟接口请求，对于接口异常的情况暂时不做处理（Mockjs 提供的图片地址似乎不稳定，有可能出现加载不出来的情况 ☠️）
 
 2. 顺手做了点图片优化：
 
@@ -34,6 +34,14 @@ demo 预览地址：https://knighd.github.io/wechat-demo/
    3. 由于图片较多，为了提升用户体验添加 react-content-loader 实现骨架屏。
 
       第二点通常通过添加 cdn 裁剪参数来实现，这里简单处理成预览图最高不超过 100 px。
+
+3. 倒序无限列表：原先是通过 `react-infinite-scroller` 来实现的，但是在发现滚动条的定位存在一些小问题：
+
+   1. 在加载第一屏数据后并没有完全滚动到底部，会有一点点偏差
+
+   2. 在加载最后一屏数据后，没有保持住当前滚动条的高度
+
+   解决方案：自己来实现一个简单的倒序无限列表，这里用了 `react-waypoint` 实现下拉加载（同理这里可以用 IntersectionObserver 替代），用 flex 的 `flex-direction: column-reverse;` 实现列表的倒序。
 
 ## TODOS
 
@@ -47,11 +55,9 @@ demo 预览地址：https://knighd.github.io/wechat-demo/
 
 3. 组件性能优化：性能瓶颈时可以考虑通过 React.memo / useCallback / useMemo 等优化消息组件
 
-4. 移动端：这里实现的是 pc 端，如果移动端版本的话还需要考虑到屏幕适配，键盘, 1px等可能存在的问题。
+4. 由于样式不做强要求，没有用 css modules，实际上大一点的项目最好还是采用 css modules / css in js。
 
-5. 由于样式不做强要求，没有用 css modules，实际上大一点的项目最好还是采用 css modules / css in js。
-
-6. 列表优化：数据量大的时候通常应该需要考虑性能问题，比如通过 `react-virtualized` 来实现，但是由于
+5. 列表优化：数据量大的时候通常应该需要考虑性能问题，比如通过 `react-virtualized` 来实现，但是由于
 
    1. 逆序，初始化时需要定位在列表底部
 
@@ -61,11 +67,15 @@ demo 预览地址：https://knighd.github.io/wechat-demo/
 
    4. 过快滚动来不及渲染的情况下出现空白并不是很好的体验
 
-      综合以上多个因素，本着不过早优化的原则，暂时不考虑虚拟列表，仅通过 `react-infinite-scroller` 来实现无限滚动。
+      综合以上多个因素，本着不过早优化的原则，暂时不考虑虚拟列表。
 
-## 问题
+## 存在的问题
 
-实际上在 `MessageList` 文件中
+1. 移动端：这里在是 pc 端实现的无限倒序滚动，而在移动端（ios 13.6 测试出现，最新的 14.x 版本未发现，安卓未测试）存在一些问题，体现在下拉加载更多时会滚动到顶部，而非固定在当前的位置，并且会不渲染列表，直至滚动时才渲染，应该是 ios 的 bug 了。
+实际上如果是 RN 或者 Flutter 都对列表提供了良好的支持, 如 FLatList 的 `inverted`。
+而如果移动端就是要用 web 去实现，应该可以考虑尝试以下方案：记录滚动条的定位，在加载完数据后，手动 scrollTo 到计算出的最新滚动条高度，或者依然采用 `react-infinite-scroller`。
+
+2. 在 `MessageList` 文件中
 
 ```
 <BaseMessage
