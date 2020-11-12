@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/wechat-demo/static/css/main.5c963739.chunk.css",
-    "main.js": "/wechat-demo/static/js/main.d3e78923.chunk.js",
-    "main.js.map": "/wechat-demo/static/js/main.d3e78923.chunk.js.map",
+    "main.js": "/wechat-demo/static/js/main.6c23ec34.chunk.js",
+    "main.js.map": "/wechat-demo/static/js/main.6c23ec34.chunk.js.map",
     "runtime-main.js": "/wechat-demo/static/js/runtime-main.1b25b8c6.js",
     "runtime-main.js.map": "/wechat-demo/static/js/runtime-main.1b25b8c6.js.map",
     "static/js/2.ff757e94.chunk.js": "/wechat-demo/static/js/2.ff757e94.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.1b25b8c6.js",
     "static/js/2.ff757e94.chunk.js",
     "static/css/main.5c963739.chunk.css",
-    "static/js/main.d3e78923.chunk.js"
+    "static/js/main.6c23ec34.chunk.js"
   ]
 }
