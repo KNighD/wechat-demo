@@ -36,10 +36,13 @@ export interface IImageMessage extends IMessageDataFromUser {
 export interface IMessageDataFromSystem extends IMessageData {}
 
 export type IUnioMessageData =
-  | IMessageDataFromUser
-  | IMessageDataFromSystem
+  | IUnknownMessage
+  | ITextMessage
   | IImageMessage
+  | IMessageDataFromSystem
 
-export type IIntersectionMessageData = ITextMessage &
-  IMessageDataFromSystem &
-  IImageMessage
+export type IIntersectionMessageData =
+  & IUnknownMessage
+  & ITextMessage
+  & IImageMessage
+  & IMessageDataFromSystem

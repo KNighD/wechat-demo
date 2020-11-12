@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import MessageList from './components/MessageList'
 import InputBox from './components/InputBox'
 import { IUnioMessageData } from './data'
@@ -9,7 +9,7 @@ function App() {
   const [messageList, setMessageList] = useState<IUnioMessageData[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(false)
-  const loadMore = async () => {
+  const loadMore = useCallback(async () => {
     if (loading) {
       return
     }
@@ -18,7 +18,7 @@ function App() {
     setMessageList([...messagesRes.list, ...messageList])
     setTotal(messagesRes.total)
     setLoading(false)
-  }
+  }, [loading, messageList])
 
   return (
     <div className="app">
@@ -27,7 +27,6 @@ function App() {
         messageList={messageList}
         total={total}
         loadMore={loadMore}
-        loading={loading}
       />
       <InputBox />
     </div>

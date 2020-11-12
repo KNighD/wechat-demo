@@ -10,7 +10,6 @@ interface Props {
   messageList: IUnioMessageData[]
   total: number
   loadMore: () => void
-  loading: boolean
 }
 
 const MessageComponentsMap = {
@@ -19,7 +18,7 @@ const MessageComponentsMap = {
   [MessageFrom.SYSTEM]: SystemMessage,
 }
 
-const MessageList = ({ messageList, loadMore, total, loading }: Props) => {
+const MessageList = ({ messageList, loadMore, total }: Props) => {
   return (
     <div className="message-list-container">
       <InfiniteScroll
@@ -28,13 +27,9 @@ const MessageList = ({ messageList, loadMore, total, loading }: Props) => {
         useWindow={false}
         loadMore={loadMore}
         loader={
-          loading ? (
-            <div className="loader" key={0}>
-              Loading...
-            </div>
-          ) : (
-            <div key={0} />
-          )
+          <div className="loader" key={0}>
+            Loading...
+          </div>
         }
         threshold={20}
         isReverse

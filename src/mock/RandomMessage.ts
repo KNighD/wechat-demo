@@ -37,25 +37,31 @@ class RandomMessage {
     contentProducer[this.type]()
   }
 
-  producer = {
-    [MessageFrom.ME]: () => {
-      this.userName = '我'
-      this.avatar = Random.image('40x40', undefined, '我')
-      this.userMessageProducer()
-    },
-    [MessageFrom.OTHER]: () => {
-      this.userName = Random.pick(['甲', '乙', '丙'])
-      this.avatar = Random.image('40x40', undefined, this.userName)
-      this.userMessageProducer()
-    },
-    [MessageFrom.SYSTEM]: () => {
-      this.type = Random.pick([MessageTypes.TIME, MessageTypes.WITHDRAW])
-      const contentProducer: { [key: string]: string } = {
-        [MessageTypes.TIME]: Random.datetime(),
-        [MessageTypes.WITHDRAW]: `${Random.pick(['甲', '乙', '丙'])}撤回一条消息`,
-      }
-      this.content = contentProducer[this.type]
-    },
+  get producer() {
+    return {
+      [MessageFrom.ME]: () => {
+        this.userName = '我'
+        this.avatar = Random.image('40x40', undefined, '我')
+        this.userMessageProducer()
+      },
+      [MessageFrom.OTHER]: () => {
+        this.userName = Random.pick(['甲', '乙', '丙'])
+        this.avatar = Random.image('40x40', undefined, this.userName)
+        this.userMessageProducer()
+      },
+      [MessageFrom.SYSTEM]: () => {
+        this.type = Random.pick([MessageTypes.TIME, MessageTypes.WITHDRAW])
+        const contentProducer: { [key: string]: string } = {
+          [MessageTypes.TIME]: Random.datetime(),
+          [MessageTypes.WITHDRAW]: `${Random.pick([
+            '甲',
+            '乙',
+            '丙',
+          ])}撤回一条消息`,
+        }
+        this.content = contentProducer[this.type]
+      },
+    }
   }
 
   constructor() {
@@ -67,4 +73,5 @@ class RandomMessage {
     this.producer[this.from]()
   }
 }
+
 export default RandomMessage
