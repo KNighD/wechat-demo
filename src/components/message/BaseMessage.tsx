@@ -1,6 +1,6 @@
 import React from 'react'
-import {  IIntersectionMessageData } from '../data'
-import { MessageFrom } from '../constants'
+import {  IIntersectionMessageData } from '../../data'
+import { MessageFrom } from '../../constants'
 import MyMessage from './MyMessage'
 import OtherMessage from './OtherMessage'
 import SystemMessage from './SystemMessage'

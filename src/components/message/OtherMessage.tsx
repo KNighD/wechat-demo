@@ -1,16 +1,16 @@
 import React from 'react'
-import { IImageMessage, ITextMessage, IUnknownMessage } from '../data'
+import { IImageMessage, ITextMessage, IUnknownMessage } from '../../data'
 import UserMessageContent from './UserMessageContent'
-import Avatar from './Avatar'
+import Avatar from '../Avatar'
 
 interface Props {
   data: ITextMessage & IImageMessage & IUnknownMessage
 }
 
-// 来自自己的消息
-const MyMessage = ({ data }: Props) => {
+// 来自别人的消息
+const OtherMessage = ({ data }: Props) => {
   return (
-    <div className="my-message-container">
+    <div className="other-message-container">
       <Avatar avatar={data.avatar} />
       <div className="content-wrap">
         <UserMessageContent data={data} />
@@ -19,4 +19,4 @@ const MyMessage = ({ data }: Props) => {
   )
 }
 
-export default MyMessage
+export default OtherMessage

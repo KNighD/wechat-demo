@@ -1,5 +1,5 @@
 import React from 'react'
-import { ITextMessage } from '../data'
+import { ITextMessage } from '../../data'
 
 interface Props {
   data: ITextMessage

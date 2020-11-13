@@ -1,5 +1,5 @@
 import React from 'react'
-import { IMessageDataFromSystem } from '../data'
+import { IMessageDataFromSystem } from '../../data'
 
 interface Props {
   data: IMessageDataFromSystem

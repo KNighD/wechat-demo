@@ -1,6 +1,6 @@
 import React from 'react'
-import { IMessageDataFromUser, IImageMessage, IUnknownMessage } from '../data'
-import { MessageTypes } from '../constants'
+import { IMessageDataFromUser, IImageMessage, IUnknownMessage } from '../../data'
+import { MessageTypes } from '../../constants'
 import ImageMessage from './ImageMessage'
 import TextMessage from './TextMessage'
 import UnknownMessage from './UnknownMessage'

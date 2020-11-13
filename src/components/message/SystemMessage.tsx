@@ -1,6 +1,6 @@
 import React from 'react'
-import { IMessageDataFromSystem } from '../data'
-import { MessageTypes } from '../constants'
+import { IMessageDataFromSystem } from '../../data'
+import { MessageTypes } from '../../constants'
 import WithdrawMessage from './WithdrawMessage'
 import TimeMessage from './TimeMessage'
 

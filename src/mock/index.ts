@@ -1,4 +1,4 @@
-import Mock, { Random } from 'mockjs'
+import Mock from 'mockjs'
 import RandomMessage from './RandomMessage'
 
 // 模拟接口延时

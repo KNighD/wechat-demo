@@ -1,7 +1,7 @@
 import React from 'react'
 import { Waypoint } from 'react-waypoint'
 import { IUnioMessageData, IIntersectionMessageData } from '../data'
-import BaseMessage from './BaseMessage'
+import BaseMessage from './message/BaseMessage'
 
 interface Props {
   messageList: IUnioMessageData[]

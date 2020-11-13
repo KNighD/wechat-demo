@@ -14,9 +14,14 @@ function App() {
       return
     }
     setLoading(true)
-    const messagesRes = await getMessages()
-    setMessageList([...messageList, ...messagesRes.list])
-    setTotal(messagesRes.total)
+    try {
+      const messagesRes = await getMessages()
+      setMessageList([...messageList, ...messagesRes.list])
+      setTotal(messagesRes.total)
+    } catch (error) {
+      // 异常处理
+      console.error(error)
+    }
     setLoading(false)
   }, [loading, messageList])
 

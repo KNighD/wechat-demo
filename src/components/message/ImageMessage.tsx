@@ -1,8 +1,8 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 import LazyLoad from 'react-lazyload'
-import { IImageMessage } from '../data'
-import ImageWithPlaceHolder from './ImageWithPlaceHolder'
+import { IImageMessage } from '../../data'
+import ImageWithPlaceHolder from '../ImageWithPlaceHolder'
 
 interface Props {
   data: IImageMessage
